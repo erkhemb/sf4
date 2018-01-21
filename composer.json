@@ -1,0 +1,49 @@
+{
+    "name": "wkda/java-api-bundle",
+    "description": "WKDA Java API Bundle",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "WKDA Engineering",
+            "email": "engineering@wkda.de"
+        }
+    ],
+    "keywords": [],
+    "homepage": "http://wkda.de",
+    "require": {
+        "guzzlehttp/guzzle": "^6.0",
+        "psr/log": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WKDA\\JavaApiBundle\\": "src/WKDA/JavaApiBundle/",
+            "WKDA\\ApiSecurityBundle\\": "src/WKDA/ApiSecurityBundle/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "mockery/mockery": "dev-master",
+        "squizlabs/php_codesniffer": "~2.6",
+        "wkda/php-code-style": "dev-develop",
+        "phpdocumentor/reflection-docblock": "~2.0.4"
+    },
+    "repositories": [
+        {
+            "type" : "vcs",
+            "url" : "git@github.com:wkda/php-code-style.git"
+        }
+    ],
+    "scripts": {
+        "test-UnitTest": [
+            "vendor/bin/phpunit -c phpunit.xml.dist --testsuite UnitTest --log-junit testResult.log"
+        ],
+        "checkstyle" : [
+            "vendor/bin/phpcs --standard=vendor/wkda/php-code-style/Symfony2 src"
+        ],
+        "checkstyle-fix" : [
+            "git diff --name-only| grep \\.php | xargs -L 1 vendor/bin/phpcbf --standard=vendor/wkda/php-code-style/Symfony2"
+        ]
+    }
+}
